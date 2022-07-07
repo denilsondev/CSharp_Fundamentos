@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 namespace bytebank_ADM.Funcionarios
 {
-    public class Diretor : Funcionario
+    public abstract class Funcionario
     {
-        public override double GetBonificacao()
+        public static int TotalDeFuncionarios { get; private set; }
+
+        public string Nome { get; set; }
+        public string CPF { get; private set; }
+        public double Salario { get; protected set; }
+
+        public Funcionario(double salario, string cpf)
         {
-            return Salario + base.GetBonificacao();
+            Console.WriteLine("Criando FUNCIONARIO");
+
+            this.CPF = cpf;
+            this.Salario = salario;
+
+            TotalDeFuncionarios++;
         }
+
+        public abstract void AumentarSalario();
+
+        public abstract double GetBonificacao();
     }
 }
