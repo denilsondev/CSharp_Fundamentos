@@ -32,9 +32,9 @@ namespace ByteBank
             {
                 System.Console.WriteLine("Não é possivel fazer uma divisao por 0!");
             }
-               catch (SaldoInsulficienteException)
+               catch (SaldoInsulficienteException ex)
             {
-                System.Console.WriteLine("Saldo insulficiente");
+                System.Console.WriteLine(ex.Message);
             }
 
 
