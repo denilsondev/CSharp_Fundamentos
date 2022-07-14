@@ -14,27 +14,23 @@ namespace ByteBank
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(5025, 52665);
+                ContaCorrente conta = new ContaCorrente(5425, 52665);
+                ContaCorrente conta2 = new ContaCorrente(5245, 52425);
+                
                 conta.Depositar(50);
                 System.Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
+                conta.Transferir(500, conta2);
                 System.Console.WriteLine(conta.Saldo);
 
             }
-            catch (ArgumentException ex)
+            catch (OperacaoFinanceiraException ex)
             {
-                System.Console.WriteLine("Problema no parametro", ex.ParamName);
-                System.Console.WriteLine("Ocorreu um erro do tipo argument exceptio");
                 System.Console.WriteLine(ex.Message);
+                System.Console.WriteLine(ex.StackTrace);
+                System.Console.WriteLine("Informacoes do inner exception");
+                System.Console.WriteLine(ex.InnerException.Message);
+                System.Console.WriteLine(ex.InnerException.StackTrace);
 
-            }
-            catch (DivideByZeroException)
-            {
-                System.Console.WriteLine("Não é possivel fazer uma divisao por 0!");
-            }
-               catch (SaldoInsulficienteException ex)
-            {
-                System.Console.WriteLine(ex.Message);
             }
 
 

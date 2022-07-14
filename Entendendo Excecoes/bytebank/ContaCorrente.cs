@@ -85,9 +85,16 @@ namespace ByteBank
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (_saldo < valor)
+            try
             {
-                return false;
+                Sacar(valor);
+
+            }
+            catch(SaldoInsulficienteException ex)
+            {
+                throw new OperacaoFinanceiraException("Operacao nao realizada", ex);
+
+
             }
 
             _saldo -= valor;
